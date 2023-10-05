@@ -1,0 +1,55 @@
+<div class="container p-5">
+    <!-- Section: Design Block -->
+    <section class=" text-center text-lg-start m-lg-5">
+
+        <div class="card mb-3">
+            <div class="row g-0 d-flex align-items-center">
+                <div class="col-lg-4 d-none d-lg-flex">
+                    <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" alt="Trendy Pants and Shoes"
+                        class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+                </div>
+                <div class="col-lg-8">
+                    <div class="logo text-center">
+                        <i class="text-primary fs-1 fw-bold me-2 bi bi-bookmarks"></i>
+                        <span class="text-primary fs-1 fw-bold" style="font-family: cursive;">Superior</span>
+                    </div>
+
+                    <div class="card-body py-5 px-md-5">
+                        <form [formGroup]="formLogin">
+                            <!-- Email input -->
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Enter your Email</mat-label>
+                                    <input formControlName="email" type="email" matInput placeholder="Placeholder">
+                                    <mat-hint>* Please enter your email</mat-hint>
+                                </mat-form-field>
+                            </p>
+
+                            <!-- Password input -->
+                            <p>
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Enter your password</mat-label>
+                                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    <mat-hint>Hint</mat-hint>
+                                </mat-form-field>
+                            </p>
+
+                            <!-- Submit button -->
+
+                            <div class="flex flex-wrap gap-3 justify-content-center">
+                                <p-button class="fs-5 font-monospace" label="Login" styleClass="p-button-Primary"
+                                    (onClick)="login()" [disabled]="formLogin.invalid"></p-button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Section: Design Block -->
+</div>

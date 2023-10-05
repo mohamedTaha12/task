@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <a style="font-family: auto;" class="navbar-brand"><i class="text-white fs-3 fw-bold me-2 bi bi-bookmarks"></i>
+            <span class="fs-3 fw-bold text-white" style="font-family: cursive;">Superior</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation" (click)="openMenue()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="test collapse navbar-collapse justify-content-center" [ngClass]="{'show': isNavShow}"
+            id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item mx-2">
+                    <a (click)="navigateTo(1, 'main/tasks/list')" class="nav-link fs-4 text-white" id="1"
+                        [ngClass]="{'active': isActive == 1}">All-Tasks</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a (click)="navigateTo(2, 'main/users/list')" class="nav-link fs-4 text-white" id="2"
+                        [ngClass]="{'active': isActive == 2}">Users</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex flex-wrap gap-3 justify-content-center">
+            <p-button class="fs-5 font-monospace" label="Logout" styleClass="p-button-Primary"
+                (onClick)="logout()"></p-button>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

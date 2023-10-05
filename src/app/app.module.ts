@@ -6,6 +6,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { AuthModule } from './admin/auth/auth.module';
+import { ButtonModule } from 'primeng/button';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { CoreModule } from './admin/core/core.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +23,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastModule,
+    AuthModule,
+    ButtonModule,
+    NgxSpinnerModule,
+    CoreModule
   ],
-  providers: [],
+  providers: [ToastModule, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

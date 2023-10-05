@@ -1,0 +1,29 @@
+// nav {
+//     background-color: #ca085a;
+
+//     .navbar-brand {
+//         font-size: 27px;
+//         font-weight: bold;
+
+//     }
+
+//     a {
+//         font-size: 20px;
+//         color: #FFF !important;
+
+//         //padding: 7px 20px;  
+//         &.active {
+//             background-color: #910340;
+//             color: #FFF;
+//         }
+//     }
+// }
+ul {
+    li {
+        cursor: pointer;
+    }
+}
+
+.active {
+    color: #ccc2c2 !important;
+}
