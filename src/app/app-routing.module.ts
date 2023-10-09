@@ -5,7 +5,7 @@ import { AboutAppComponent } from './about-app/about-app.component';
 const routes: Routes = [
   {
     path: '',
-    component: AboutAppComponent
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'admin',
