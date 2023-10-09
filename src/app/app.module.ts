@@ -14,7 +14,12 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { CoreModule } from './admin/core/core.module';
 import { AboutAppComponent } from './about-app/about-app.component';
 import { CardModule } from 'primeng/card';
-
+// import ngx-translate and the http loader
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient } from '@angular/common/http';
+import { MainModule } from './admin/main/main.module';
+import { SharedModule } from './admin/shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,9 +37,26 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     NgxSpinnerModule,
     CoreModule,
-    CardModule
+    CardModule,
+    MainModule,
+    SharedModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
+  ], exports: [
+    SharedModule
   ],
   providers: [ToastModule, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+  return new TranslateHttpLoader(http);
+}

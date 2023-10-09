@@ -1,21 +1,17 @@
-<div class="container text-center mt-1">
-
-    <div class="card d-inline-flex p-2">
-        <p-card header="Featured" subheader="Together to advance" [style]="{ width: '400px',color: 'crimson'}">
-            <ng-template pTemplate="header">
-                <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-            </ng-template>
-            <p class="text-secondary">
-                <span class="text-danger fs-6 fw-bold">Featured App</span> allows you to log in as an admin to
-                add, delete, or modify tasks for the
-                user
-                You can also log in as a user, create an account for yourself, receive tasks from the admin, and
-                complete them
-                Let's get started, my friend
-            </p>
-            <ng-template pTemplate="footer">
-                <p-button (onClick)="openProject()" label="Let's Start" styleClass="p-button-info"></p-button>
-            </ng-template>
-        </p-card>
+<div class="container m-auto">
+    <div class="row justify-content-between">
+        <div class="col-md-5 my-5 text-center">
+            <img class="rounded-4" style="max-width: 90%;" src="assets/images/about-app.png" alt="">
+        </div>
+        <div class="card col-md-7 mt-5 rounded-4 p-3">
+            <h1 class="text-center mt-3 fs-1 text-info fw-bold">{{"aboutApp.featured" | translate}}</h1>
+            <h3 class="text-center fs-5 text-secondary fw-bold">{{"aboutApp.togetherTodvance" | translate}}</h3>
+            <span class="text-dark fw-bold fs-3 font-monospace lh-sm">
+                <span class="text-info">{{"aboutApp.featured" | translate}}</span>
+                {{"aboutApp.aboutContent" | translate}}
+            </span>
+            <p-button (onClick)="openProject()" class="my-3" label="{{'general.LetsStart' | translate}}"
+                styleClass="p-button-help"></p-button>
+        </div>
     </div>
 </div>

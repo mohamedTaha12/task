@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ButtonModule } from 'primeng/button';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     HttpClientModule,
     CommonModule,
-    ButtonModule
+    ButtonModule,
+    TranslateModule,
+    MatFormFieldModule
   ]
 })
 export class AuthModule { }

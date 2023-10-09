@@ -1,55 +1,86 @@
-<div class="container p-5">
-    <!-- Section: Design Block -->
-    <section class=" text-center text-lg-start m-lg-5">
-
-        <div class="card mb-3">
-            <div class="row g-0 d-flex align-items-center">
-                <div class="col-lg-4 d-none d-lg-flex">
-                    <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" alt="Trendy Pants and Shoes"
-                        class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
-                </div>
-                <div class="col-lg-8">
-                    <div class="logo text-center">
-                        <i class="text-primary fs-1 fw-bold me-2 bi bi-bookmarks"></i>
-                        <span class="text-primary fs-1 fw-bold" style="font-family: cursive;">Featured</span>
+<section class="sec1 vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Phone image">
+            </div>
+            <div class="card p-5 rounded-5 col-md-6">
+                <h1 class="text-center fs-1 fw-bold">{{"aboutApp.featured" | translate}}</h1>
+                <h3 class="text-secondary text-center fs-5 fw-bold">admin</h3>
+                <form [formGroup]="formLogin">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input formControlName="email" type="email" id="form1Example13"
+                            class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example13">Email address</label>
                     </div>
 
-                    <div class="card-body py-5 px-md-5">
-                        <form [formGroup]="formLogin">
-                            <!-- Email input -->
-                            <p>
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Enter your Email</mat-label>
-                                    <input formControlName="email" type="email" matInput placeholder="Placeholder">
-                                    <mat-hint>* Please enter your email</mat-hint>
-                                </mat-form-field>
-                            </p>
-
-                            <!-- Password input -->
-                            <p>
-                                <mat-form-field appearance="outline">
-                                    <mat-label>Enter your password</mat-label>
-                                    <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
-                                    <button mat-icon-button matSuffix (click)="hide = !hide"
-                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                                    </button>
-                                    <mat-hint>Hint</mat-hint>
-                                </mat-form-field>
-                            </p>
-
-                            <!-- Submit button -->
-
-                            <div class="flex flex-wrap gap-3 justify-content-center">
-                                <p-button class="fs-5 font-monospace" label="Login" styleClass="p-button-Primary"
-                                    (onClick)="login()" [disabled]="formLogin.invalid"></p-button>
-                            </div>
-                        </form>
-
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input formControlName="password" type="password" id="form1Example23"
+                            class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example23">Password</label>
                     </div>
-                </div>
+
+
+
+                    <!-- Submit button -->
+                    <div class="text-center ">
+                        <button type="submit" (click)="login()" [disabled]="formLogin.invalid"
+                            class="btn btn-primary px-4 btn-lg btn-block ">Log
+                            in</button>
+                        <div class="mt-1">
+                            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+                                role="button">
+                                <i class="fab fa-twitter me-2"></i>Continue as a User</a>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         </div>
-    </section>
-    <!-- Section: Design Block -->
-</div>
+    </div>
+</section>
+
+
+<section class="sec2 vh-100" style="display: none;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="card p-5 rounded-5 col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <h1 class="text-center fs-1 fw-bold">{{"aboutApp.featured" | translate}}</h1>
+                <h3 class="text-secondary text-center fs-5 fw-bold">admin</h3>
+                <form [formGroup]="formLogin">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input formControlName="email" type="email" id="form1Example13"
+                            class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example13">Email address</label>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <input formControlName="password" type="password" id="form1Example23"
+                            class="form-control form-control-lg" />
+                        <label class="form-label" for="form1Example23">Password</label>
+                    </div>
+
+
+
+                    <!-- Submit button -->
+                    <div class="text-center ">
+                        <button type="submit" (click)="login()" [disabled]="formLogin.invalid"
+                            class="btn btn-primary px-4 btn-lg btn-block ">Log
+                            in</button>
+                        <div class="mt-1">
+                            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
+                                role="button">
+                                <i class="fab fa-twitter me-2"></i>Continue as a User</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

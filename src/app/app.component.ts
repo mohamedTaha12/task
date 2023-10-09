@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tasks';
+  lang: any
+  constructor(
+    private translate: TranslateService
+  ) {
+    if ("lang" in localStorage) {
+      this.lang = localStorage.getItem('lang')
+      translate.use(this.lang);
+    } else {
+      translate.use(this.translate.defaultLang)
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <div class="container-fluid">
         <a style="font-family: auto;" class="navbar-brand"><i class="text-white fs-3 fw-bold me-2 bi bi-bookmarks"></i>
             <span class="fs-3 fw-bold text-white" style="font-family: cursive;">Featured</span>
@@ -21,11 +21,15 @@
             </ul>
         </div>
         <div class="flex flex-wrap gap-3 justify-content-center">
+            <p-button class="mx-2 fs-5 font-monospace" label="{{lang == 'en' ? 'عربي':'english'}}"
+                styleClass="p-button-Primary" (onClick)="changeLang()"></p-button>
             <p-button class="fs-5 font-monospace" label="Logout" styleClass="p-button-Primary"
-                (onClick)="logout()"></p-button>
+                (onClick)="logout($event)"></p-button>
         </div>
     </div>
-</nav>
+</nav> -->
+
+<app-nav-bar></app-nav-bar>
 
 <div class="container">
     <router-outlet></router-outlet>

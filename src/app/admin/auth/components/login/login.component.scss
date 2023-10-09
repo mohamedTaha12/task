@@ -1,17 +1,29 @@
-mat-form-field {
-    width: 100%;
+.divider:after,
+.divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
 }
 
-mat-hint {
-    color: red;
-}
-
-@media (min-width: 992px) {
-    .rounded-tr-lg-0 {
-        border-top-right-radius: 0;
+@media only screen and (max-width: 767px) {
+    .sec1 {
+        display: none !important;
     }
 
-    .rounded-bl-lg-5 {
-        border-bottom-left-radius: 0.5rem;
+    .sec2 {
+        display: block !important;
+    }
+
+    section {
+        background-image: url(https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg) !important;
+        background-repeat: no-repeat;
+        background-color: #cccccc;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .card {
+        opacity: .95;
     }
 }

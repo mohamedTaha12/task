@@ -4,11 +4,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-layout',
-  templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  selector: 'app-nav-bar',
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss']
 })
-export class LayoutComponent implements OnInit {
+export class NavBarComponent implements OnInit {
   lang: any = ''
   isActive: number = 1
   isNavShow: boolean = false

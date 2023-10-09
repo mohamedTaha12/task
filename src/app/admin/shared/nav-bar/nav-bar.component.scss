@@ -1,0 +1,19 @@
+.nav-item {
+    a {
+        cursor: pointer;
+    }
+}
+
+.sec1 {
+    display: none !important;
+}
+
+@media only screen and (max-width: 767px) {
+    .sec1 {
+        display: block !important;
+    }
+
+    .sec2 {
+        display: none !important;
+    }
+}
