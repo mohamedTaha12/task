@@ -1,7 +1,8 @@
 <div class="p-4">
     <header class="d-flex justify-content-between align-items-center">
         <h1 class="m-0">Add New Task</h1>
-        <button mat-flat-button matDialogClose class="text-danger">
+        <p-confirmPopup></p-confirmPopup>
+        <button mat-flat-button (click)="close($event)" class="text-danger">
             <mat-icon>close</mat-icon>
         </button>
     </header>
@@ -50,9 +51,15 @@
 
     <footer class="tw-p-6">
         <div class="d-flex justify-content-center align-items-center">
-            <p-button class="fs-5 mx-1 font-monospace" label="Create" styleClass="p-button-success"
-                (onClick)="createTask()" [disabled]="formData.invalid"></p-button>
-            <p-button class="fs-5 mx-1 font-monospace" label="Close" styleClass="p-button-danger"></p-button>
+            <p-confirmPopup></p-confirmPopup>
+            <p-button *ngIf="!data" class="fs-5 mx-1 font-monospace" label="Create" styleClass="p-button-success"
+                (onClick)="createTask($event)" [disabled]="formData.invalid"></p-button>
+            <p-confirmPopup></p-confirmPopup>
+            <p-button *ngIf="data" class="fs-5 mx-1 font-monospace" label="Update" styleClass="p-button-success"
+                (onClick)="updateTask($event)" [disabled]="formData.invalid"></p-button>
+            <p-confirmPopup></p-confirmPopup>
+            <p-button class="fs-5 mx-1 font-monospace" label="Close" (onClick)="close($event)"
+                styleClass="p-button-danger"></p-button>
         </div>
     </footer>
 </div>

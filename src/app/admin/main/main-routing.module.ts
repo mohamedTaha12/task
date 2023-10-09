@@ -8,10 +8,6 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('./tasks-admin/tasks-admin.module').then(m => m.TasksAdminModule)
-      },
-      {
         path: 'tasks',
         loadChildren: () => import('./tasks-admin/tasks-admin.module').then(m => m.TasksAdminModule)
       },

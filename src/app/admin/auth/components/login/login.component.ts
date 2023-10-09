@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.formLogin.value).subscribe((res: any) => {
       localStorage.setItem('token', res.token)
-      this.router.navigate(['/main/tasks/list'])
+      this.router.navigate(['admin/main/tasks/list'])
     })
   }
 

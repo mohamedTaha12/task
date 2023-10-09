@@ -9,14 +9,14 @@
       <div class="col-md-3">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Search</mat-label>
-          <input matInput placeholder="title search">
+          <input (keyup)="searchByTitle($event.target)" matInput placeholder="title search">
         </mat-form-field>
       </div>
       <div class="col-md-3">
 
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>By User</mat-label>
-          <mat-select>
+          <mat-select (selectionChange)="searchByUser($event)">
             <mat-option *ngFor="let user of users" [value]="user?.id">
               {{user?.name}}
             </mat-option>
@@ -26,8 +26,8 @@
       <div class="col-md-3">
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Status</mat-label>
-          <mat-select>
-            <mat-option *ngFor="let item of status" [value]="item?.id">
+          <mat-select (selectionChange)="searchByStatus($event)">
+            <mat-option *ngFor="let item of status" [value]="item?.name">
               {{item?.name}}
             </mat-option>
           </mat-select>
@@ -37,8 +37,9 @@
         <mat-form-field appearance="outline" class="w-100">
           <mat-label>Enter a date range</mat-label>
           <mat-date-range-input [rangePicker]="picker">
-            <input matStartDate placeholder="Start date">
-            <input matEndDate placeholder="End date">
+            <input #dateRangeStart matStartDate placeholder="Start date">
+            <input #dateRangeEnd (dateChange)="searchByDate(dateRangeStart, dateRangeEnd)" matEndDate
+              placeholder="End date">
           </mat-date-range-input>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-date-range-picker #picker></mat-date-range-picker>
@@ -49,10 +50,11 @@
   <div class="listBox">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8  w-100 mt-2">
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
+      <!-- image Column -->
+      <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element;let index = index"> {{index + 1}} </td>
+        <td mat-cell *matCellDef="let element;let index = index"> <img style="max-width: 80px;"
+            [src]="'https://i-task-crud.onrender.com/'+element.image" alt=""> </td>
       </ng-container>
 
       <!-- Name Column -->
@@ -68,20 +70,24 @@
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="deadLineDate">
+      <ng-container matColumnDef="deadline">
         <th mat-header-cell *matHeaderCellDef> DeadLine Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.deadLineDate}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.deadline}} </td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
       </ng-container>
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef> Status </th>
         <td mat-cell *matCellDef="let element"> {{element.status}} </td>
       </ng-container>
-
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="w-20"> </th>
         <td mat-cell *matCellDef="let element">
-          <button class="btn btn-warning" mat-raised-button>Update</button>
-          <button mat-raised-button color="warn">Delete</button>
+          <button class="btn btn-warning" mat-raised-button (click)="updateTask(element)">Update</button>
+          <p-confirmPopup></p-confirmPopup>
+          <button mat-raised-button color="warn" (click)="deleteTask($event,element._id)">Delete</button>
         </td>
       </ng-container>
 

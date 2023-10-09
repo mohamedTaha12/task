@@ -3,50 +3,42 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TasksService } from '../../services/tasks.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import * as moment from 'moment';
 
 export interface PeriodicElement {
   title: string;
   user: string;
-  deadLineDate: string;
+  deadline: string;
   status: string;
+  description: string
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { status: 'Complete', title: 'Hydrogen', user: "1.0079", deadLineDate: "10-11-2022" },
-  { status: 'In-Prossing', title: 'Helium', user: "4.0026", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Lithium', user: "6.941", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Beryllium', user: "9.0122", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Boron', user: "10.811", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Carbon', user: "12.010", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Nitrogen', user: "14.006", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Oxygen', user: "15.999", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Fluorine', user: "18.998", deadLineDate: "10-11-2022" },
-  { status: 'Complete', title: 'Neon', user: "20.179", deadLineDate: "10-11-2022" },
-];
 @Component({
   selector: 'app-list-tasks',
   templateUrl: './list-tasks.component.html',
   styleUrls: ['./list-tasks.component.scss']
 })
 export class ListTasksComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'title', 'user', 'deadLineDate', 'status', 'actions'];
-  dataSource = ELEMENT_DATA;
-  tasksFilter!: FormGroup
+  displayedColumns: string[] = ['image', 'title', 'user', 'deadline', 'status', 'description', 'actions'];
+  dataSource: any;
+  tasksFilter!: FormGroup;
+  filterations: any = {}
   users: any = [
-    { name: "Moahmed", id: 1 },
-    { name: "Ali", id: 2 },
-    { name: "Ahmed", id: 3 },
-    { name: "Zain", id: 4 },
+    { name: "Mohamed", id: '651b9ee7db0a1cd83fafbccd' },
+    { name: "Omar", id: '651b9f0edb0a1cd83fafbcd0' },
   ]
 
   status: any = [
     { name: "Complete", id: 1 },
-    { name: "In-Prossing", id: 2 },
+    { name: "In-Progress", id: 2 },
   ]
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService
+
   ) { }
 
   ngOnInit(): void {
@@ -64,9 +56,21 @@ export class ListTasksComponent implements OnInit {
   }
 
   getAllTasks() {
-    this.tasksService.getAllTasks().subscribe(res => {
+    this.tasksService.getAllTasks(this.filterations).subscribe((res: any) => {
       console.log(res)
+      this.dataSource = this.mappingData(res.tasks)
+
     })
+  }
+  mappingData(data: any[]) {
+    let newData = data.map(item => {
+      return {
+        ...item,
+        user: item.userId?.username,
+      }
+    })
+    console.log(newData)
+    return newData
   }
   addTask() {
     const dialogRef = this.dialog.open(AddTaskComponent, {
@@ -76,7 +80,62 @@ export class ListTasksComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.getAllTasks()
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task created successfuly' });
       }
     })
+  }
+
+  // ACTION ON TASKES DELETE AND UPDATE
+
+
+  deleteTask(event: Event, id: any) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure that you want to delete?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.tasksService.deleteTask(id).subscribe(res => {
+          this.getAllTasks()
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task deleted successfuly' });
+        })
+      }
+    });
+  }
+  updateTask(element: any) {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '750px',
+      data: element
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task updated successfuly' });
+        this.getAllTasks()
+      }
+    })
+  }
+
+
+  // SEAERCH
+  searchByTitle(ele: any) {
+    this.filterations['keyword'] = ele.value
+    setTimeout(() => {
+      this.getAllTasks()
+    }, 2000);
+  }
+  searchByUser(ele: any) {
+    this.filterations['userId'] = ele.value
+    this.getAllTasks()
+  }
+  searchByStatus(ele: any) {
+    this.filterations['status'] = ele.value
+    this.getAllTasks()
+  }
+  searchByDate(dateRangeStart: HTMLInputElement, dateRangeEnd: HTMLInputElement) {
+    this.filterations['fromDate'] = moment(dateRangeStart.value).format('DD-MM-YYYY')
+    this.filterations['toDate'] = moment(dateRangeEnd.value).format('DD-MM-YYYY')
+    if (dateRangeEnd.value) {
+      this.getAllTasks()
+    }
   }
 }

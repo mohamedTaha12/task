@@ -23,7 +23,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         this.messageService.add({ severity: 'error', summary: 'Error', detail: error.error.message });
-        if (error.error.message == "jwt expired") {
+        if (error.error.message == "jwt expired" || "jwt malformed") {
           this.router.navigate(["/login"])
           localStorage.removeItem('token')
         }

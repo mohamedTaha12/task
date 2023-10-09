@@ -12,10 +12,13 @@ import { AuthModule } from './admin/auth/auth.module';
 import { ButtonModule } from 'primeng/button';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CoreModule } from './admin/core/core.module';
+import { AboutAppComponent } from './about-app/about-app.component';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AboutAppComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { CoreModule } from './admin/core/core.module';
     AuthModule,
     ButtonModule,
     NgxSpinnerModule,
-    CoreModule
+    CoreModule,
+    CardModule
   ],
   providers: [ToastModule, MessageService, ConfirmationService],
   bootstrap: [AppComponent]

@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/app/user/material/material.module';
 import { ButtonModule } from 'primeng/button';
-
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { ButtonModule } from 'primeng/button';
     HttpClientModule,
     CommonModule,
     TasksAdminRoutingModule,
-    ButtonModule
+    ButtonModule,
+    ConfirmPopupModule
   ]
 })
 export class TasksAdminModule { }

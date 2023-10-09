@@ -4,10 +4,6 @@ import { ListTasksComponent } from './components/list-tasks/list-tasks.component
 
 const routes: Routes = [
   {
-    path: '',
-    component: ListTasksComponent
-  },
-  {
     path: 'list',
     component: ListTasksComponent
   }
