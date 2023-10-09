@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from 'src/app/user/material/material.module';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
-
+import { TableModule } from 'primeng/table';
 @NgModule({
   declarations: [
     ListTasksComponent,
@@ -23,7 +23,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     CommonModule,
     TasksAdminRoutingModule,
     ButtonModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    TableModule
   ]
 })
 export class TasksAdminModule { }

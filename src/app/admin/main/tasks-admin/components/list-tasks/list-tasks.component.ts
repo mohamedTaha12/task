@@ -37,7 +37,7 @@ export class ListTasksComponent implements OnInit {
     private fb: FormBuilder,
     private tasksService: TasksService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
 
   ) { }
 

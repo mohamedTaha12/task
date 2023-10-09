@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
+
   ) { }
 
   ngOnInit(): void {
@@ -31,6 +34,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.formLogin.value).subscribe((res: any) => {
       localStorage.setItem('token', res.token)
       this.router.navigate(['admin/main/tasks/list'])
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Success' });
+
     })
   }
 

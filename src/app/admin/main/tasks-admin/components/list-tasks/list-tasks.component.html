@@ -1,9 +1,7 @@
-<div class="mt-4">
-
+<div>
   <div class="d-flex justify-content-end">
-    <button class="addTask" mat-raised-button (click)="addTask()">Add Task</button>
+    <button class="addTask" mat-raised-button (click)="addTask()" style="background-color: #2196F3;">Add Task</button>
   </div>
-
   <form>
     <div class="row mt-3">
       <div class="col-md-3">
@@ -48,7 +46,7 @@
     </div>
   </form>
   <div class="listBox">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8  w-100 mt-2">
+    <table mat-table [dataSource]="dataSource" class="table1 mat-elevation-z8  w-100 mt-2">
 
       <!-- image Column -->
       <ng-container matColumnDef="image">
@@ -94,6 +92,38 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+
+
+
+    <div class="card table2" style="display: none;">
+      <p-table [value]="dataSource" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>title</th>
+            <th>user</th>
+            <th>deadline</th>
+            <th>description</th>
+            <th>status</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.deadline }}</td>
+            <td>{{product.description}}</td>
+            <td>{{ product.status }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+
+
+
+
+
+
 
   </div>
 </div>
