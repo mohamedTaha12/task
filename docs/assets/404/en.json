@@ -1,0 +1,13 @@
+{
+    "general": {
+        "LetsStart": "Let's Start"
+    },
+    "aboutApp": {
+        "featured": "Featured",
+        "togetherTodvance": "Together to advance",
+        "aboutContent": "allows you to log in as an admin to add, delete, or modify tasks for the user You can also log in as a user, create an account for yourself, receive tasks from the admin, and complete them Let's get started, my friend."
+    },
+    "admin": {
+        "test": "test"
+    }
+}
