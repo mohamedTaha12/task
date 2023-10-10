@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,6 +40,7 @@ import { SharedModule } from './admin/shared/shared.module';
     CardModule,
     MainModule,
     SharedModule,
+    ConfirmDialogModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

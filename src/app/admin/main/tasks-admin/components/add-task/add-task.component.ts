@@ -45,41 +45,20 @@ export class AddTaskComponent implements OnInit {
     this.formData.get('image')?.setValue(event?.target?.files[0])
     console.log(event?.target?.files[0])
   }
-  createTask(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to Create Task?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        let model = this.prepeareFormData()
-        this.tasksService.createTask(model).subscribe(res => {
-          this.dialog.close(true)
-        })
-      }
-    });
+  createTask() {
+    let model = this.prepeareFormData()
+    this.tasksService.createTask(model).subscribe(res => {
+      this.dialog.close(true)
+    })
   }
-  updateTask(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to Update Task?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        let model = this.prepeareFormData()
-        this.tasksService.updateTask(this.data._id, model).subscribe(res => {
-          this.dialog.close(true)
-        })
-      }
-    });
+  updateTask() {
+    let model = this.prepeareFormData()
+    this.tasksService.updateTask(this.data._id, model).subscribe(res => {
+      this.dialog.close(true)
+    })
   }
-  close(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to Close Task?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.dialog.close()
-      }
-    });
+  close() {
+    this.dialog.close()
   }
   prepeareFormData() {
     let newDate = moment(this.formData.value['deadline']).format('DD-MM-YYYY')

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-side-bar',
@@ -11,6 +11,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 export class SideBarComponent implements OnInit {
   sidenavWidth = 4;
   ngStyle!: string;
+  items!: MenuItem[];
+  home!: MenuItem;
   constructor(
     private router: Router,
     private confirmationService: ConfirmationService,
@@ -21,7 +23,8 @@ export class SideBarComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.items = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
+    this.home = { icon: 'pi pi-home', routerLink: '/' };
   }
 
   increase() {

@@ -10,6 +10,12 @@ import { MaterialModule } from 'src/app/user/material/material.module';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TableModule } from 'primeng/table';
+import { MenuModule } from 'primeng/menu';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+
 @NgModule({
   declarations: [
     ListTasksComponent,
@@ -24,7 +30,12 @@ import { TableModule } from 'primeng/table';
     TasksAdminRoutingModule,
     ButtonModule,
     ConfirmPopupModule,
-    TableModule
+    TableModule,
+    MenuModule,
+    ConfirmDialogModule,
+    BreadcrumbModule,
+    MatPaginatorModule,
+    MatTableModule
   ]
 })
 export class TasksAdminModule { }

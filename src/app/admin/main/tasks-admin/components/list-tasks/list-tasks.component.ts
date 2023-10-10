@@ -3,7 +3,10 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TasksService } from '../../services/tasks.service';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
+import { AfterViewInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 
 export interface PeriodicElement {
@@ -19,10 +22,15 @@ export interface PeriodicElement {
   styleUrls: ['./list-tasks.component.scss']
 })
 export class ListTasksComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  items!: MenuItem[];
   displayedColumns: string[] = ['image', 'title', 'user', 'deadline', 'status', 'description', 'actions'];
   dataSource: any;
   tasksFilter!: FormGroup;
   filterations: any = {}
+  itemsBreadCrumb!: MenuItem[];
+  home!: MenuItem;
+
   users: any = [
     { name: "Mohamed", id: '651b9ee7db0a1cd83fafbccd' },
     { name: "Omar", id: '651b9f0edb0a1cd83fafbcd0' },
@@ -44,6 +52,9 @@ export class ListTasksComponent implements OnInit {
   ngOnInit(): void {
     this.getAllTasks()
     this.createform()
+    this.itemsBreadCrumb = [{ label: 'About Featured' }, { label: 'Tasks-list' }];
+    this.itemsBreadCrumb[0] = { label: 'About Featured', routerLink: '/admin/main' };
+    this.home = { icon: 'pi pi-home', routerLink: '/admin/main' };
   }
 
   createform() {
@@ -88,19 +99,30 @@ export class ListTasksComponent implements OnInit {
   // ACTION ON TASKES DELETE AND UPDATE
 
 
-  deleteTask(event: Event, id: any) {
+  deleteTask(id: any) {
     this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure that you want to delete?',
-      icon: 'pi pi-exclamation-triangle',
+      message: 'Are you sure that you want to Delete?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
       accept: () => {
         this.tasksService.deleteTask(id).subscribe(res => {
           this.getAllTasks()
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task deleted successfuly' });
         })
       }
+
+
     });
+
   }
+  getMenuItemsForItem(item: any): MenuItem[] {
+    const context = item;
+    return [
+      { label: 'Update', icon: 'pi pi-refresh', command: e => this.updateTask(item) },
+      { label: 'Delete', icon: 'pi pi-fw pi-trash', command: e => this.deleteTask(item._id) }
+    ]
+  }
+
   updateTask(element: any) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '750px',
@@ -114,6 +136,7 @@ export class ListTasksComponent implements OnInit {
       }
     })
   }
+
 
 
   // SEAERCH

@@ -33,6 +33,7 @@ import { AdminRoutingModule } from '../admin-routing.module';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
+    // BrowserModule,
     FormsModule,
     MatButtonModule,
     MatMenuModule,
