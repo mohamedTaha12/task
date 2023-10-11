@@ -8,6 +8,8 @@ import { AfterViewInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
+import { ConfirmDialogModel, ConfirmMsgComponent } from 'src/app/admin/shared/confirm-msg/confirm-msg.component';
+import { SearchListComponent } from 'src/app/admin/shared/search-list/search-list.component';
 
 export interface PeriodicElement {
   title: string;
@@ -56,6 +58,8 @@ export class ListTasksComponent implements OnInit {
     this.itemsBreadCrumb[0] = { label: 'About Featured', routerLink: '/admin/main' };
     this.home = { icon: 'pi pi-home', routerLink: '/admin/main' };
   }
+  // CONFIRM MSG
+
 
   createform() {
     this.tasksFilter = this.fb.group({
@@ -70,7 +74,6 @@ export class ListTasksComponent implements OnInit {
     this.tasksService.getAllTasks(this.filterations).subscribe((res: any) => {
       console.log(res)
       this.dataSource = this.mappingData(res.tasks)
-
     })
   }
   mappingData(data: any[]) {
@@ -86,6 +89,7 @@ export class ListTasksComponent implements OnInit {
   addTask() {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '750px',
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -99,21 +103,40 @@ export class ListTasksComponent implements OnInit {
   // ACTION ON TASKES DELETE AND UPDATE
 
 
-  deleteTask(id: any) {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to Delete?',
-      header: 'Delete Confirmation',
-      icon: 'pi pi-info-circle',
-      accept: () => {
-        this.tasksService.deleteTask(id).subscribe(res => {
+  // deleteTask(id: any) {
+  // this.confirmationService.confirm({
+  //   message: 'Are you sure that you want to Delete?',
+  //   header: 'Delete Confirmation',
+  //   icon: 'pi pi-info-circle',
+  //   accept: () => {
+  //     this.tasksService.deleteTask(id).subscribe(res => {
+  //       this.getAllTasks()
+  //       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task deleted successfuly' });
+  //     })
+  //   }
+
+
+  // });
+
+  // }
+  deleteTask(ele: any): void {
+    const message = `Are you sure you want to delete ` + ele.title + ` task ?`;
+
+    const dialogData = new ConfirmDialogModel("Confirm Action", message);
+
+    const dialogRef = this.dialog.open(ConfirmMsgComponent, {
+      maxWidth: "400px",
+      data: dialogData
+    });
+
+    dialogRef.afterClosed().subscribe(dialogResult => {
+      if (dialogResult) {
+        this.tasksService.deleteTask(ele._id).subscribe(res => {
           this.getAllTasks()
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task deleted successfuly' });
         })
       }
-
-
     });
-
   }
   getMenuItemsForItem(item: any): MenuItem[] {
     const context = item;
@@ -125,8 +148,9 @@ export class ListTasksComponent implements OnInit {
 
   updateTask(element: any) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '750px',
-      data: element
+      width: '650px',
+      data: element,
+      disableClose: true
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -160,5 +184,16 @@ export class ListTasksComponent implements OnInit {
     if (dateRangeEnd.value) {
       this.getAllTasks()
     }
+  }
+  openSearchDialog() {
+    const dialogRef = this.dialog.open(SearchListComponent, {
+      width: '400px',
+      // disableClose: true
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.filterations = result
+      this.getAllTasks()
+    })
   }
 }

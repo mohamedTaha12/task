@@ -1,0 +1,54 @@
+<div class="container py-3">
+    <h2 class="fw-bold" style="color: #3d4371;">Search in tasks list</h2>
+    <form [formGroup]="searchForm">
+        <div class="row mt-3">
+            <div class="col-sm-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>search by title</mat-label>
+                    <input formControlName="title" matInput placeholder="title search">
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>search by user</mat-label>
+                    <mat-select formControlName="user">
+                        <mat-option *ngFor="let user of users" [value]="user?.id">
+                            {{user?.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>search by status</mat-label>
+                    <mat-select formControlName="status">
+                        <mat-option *ngFor="let item of status" [value]="item?.name">
+                            {{item?.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>enter a date range</mat-label>
+                    <mat-date-range-input [rangePicker]="picker">
+                        <input formControlName="dateStart" #dateRangeStart matStartDate placeholder="Start date">
+                        <input formControlName="dateEnd" #dateRangeEnd matEndDate placeholder="End date">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker></mat-date-range-picker>
+                </mat-form-field>
+            </div>
+            <div class="col-12 row">
+                <div class="col-6">
+
+                </div>
+                <div class="col-6 d-flex justify-content-end">
+                    <button class="mx-1" mat-raised-button color="primary" (click)="search()">Search</button>
+                    <button class="mx-1" mat-raised-button color="warn" (click)="close()">Close</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

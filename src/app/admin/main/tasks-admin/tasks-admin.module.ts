@@ -15,6 +15,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { MatTableModule } from '@angular/material/table';
     ConfirmDialogModule,
     BreadcrumbModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    MatMenuModule,
+    MatButtonModule
   ]
 })
 export class TasksAdminModule { }

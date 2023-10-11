@@ -10,7 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
@@ -18,12 +18,24 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MainRoutingModule } from '../main/main-routing.module';
 import { AdminRoutingModule } from '../admin-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { FooterComponent } from './footer/footer.component';
+import { ConfirmMsgComponent } from './confirm-msg/confirm-msg.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SearchListComponent } from './search-list/search-list.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
 
 
 @NgModule({
   declarations: [
     NavBarComponent,
-    SideBarComponent
+    SideBarComponent,
+    FooterComponent,
+    ConfirmMsgComponent,
+    SearchListComponent
   ],
   imports: [
     CommonModule,
@@ -33,20 +45,31 @@ import { AdminRoutingModule } from '../admin-routing.module';
     MatListModule,
     MatIconModule,
     MatToolbarModule,
-    // BrowserModule,
+    MatFormFieldModule,
     FormsModule,
     MatButtonModule,
     MatMenuModule,
-    // RouterModule,
+    MatCardModule,
     MatExpansionModule,
     MatTooltipModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
     // RouterModule.forRoot([])
 
   ], exports: [
     NavBarComponent,
     SideBarComponent,
-
+    FooterComponent,
+    MatButtonModule,
+    MatDialogModule,
+    ConfirmMsgComponent,
+    SearchListComponent
   ]
 })
 export class SharedModule { }

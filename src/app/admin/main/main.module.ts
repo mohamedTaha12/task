@@ -8,6 +8,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { MainComponent } from './main/main.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { SidebarModule } from 'primeng/sidebar';
+import { MenubarModule } from 'primeng/menubar';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     ButtonModule,
     TranslateModule,
     SharedModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    SidebarModule,
+    MenubarModule
   ]
 })
 export class MainModule { }
