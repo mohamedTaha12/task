@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: #2196F3;">
-    <button mat-icon-button (click)="sidenav.toggle()" matTooltip="Menu">
-        <mat-icon>menu</mat-icon>
+    <button mat-icon-button matTooltip="Menu">
+        <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
     </button>
     <span>Featured</span>
     <span class="toolbar-item-spacer"></span>
@@ -27,8 +27,8 @@
             <mat-icon>help</mat-icon><span>Help</span>
         </button>
         <mat-divider></mat-divider>
-        <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>Logout
+        <button mat-menu-item>
+            <mat-icon (click)="logout()">exit_to_app</mat-icon>Logout
         </button>
     </mat-menu>
 </mat-toolbar>
