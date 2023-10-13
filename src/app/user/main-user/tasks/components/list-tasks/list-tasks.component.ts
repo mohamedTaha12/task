@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TasksService } from '../../services/tasks.service';
 import { ConfirmDialogModel, ConfirmMsgComponent } from 'src/app/admin/shared/confirm-msg/confirm-msg.component';
+import { MessageService } from 'primeng/api';
 export interface PeriodicElement {
   title: string;
   description: string;
@@ -49,7 +50,8 @@ export class ListTasksComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private fb: FormBuilder,
-    private tasksService: TasksService
+    private tasksService: TasksService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +109,7 @@ export class ListTasksComponent implements OnInit {
           id: ele._id
         }
         this.tasksService.completeTask(model).subscribe(res => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Task completed successfuly' });
           this.getAllTasks()
         })
       }

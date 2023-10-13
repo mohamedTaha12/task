@@ -168,6 +168,7 @@ export class LayoutComponent implements OnInit {
       message: 'Are you sure that you want to logout?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
+        localStorage.removeItem("token")
         this.router.navigate(['admin/login'])
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logout successfuly' });
       }

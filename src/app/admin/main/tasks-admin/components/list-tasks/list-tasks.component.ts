@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import * as moment from 'moment';
 import { ConfirmDialogModel, ConfirmMsgComponent } from 'src/app/admin/shared/confirm-msg/confirm-msg.component';
 import { SearchListComponent } from 'src/app/admin/shared/search-list/search-list.component';
+import { UsersService } from '../../../manage-users/services/users.service';
 
 export interface PeriodicElement {
   title: string;
@@ -33,10 +34,7 @@ export class ListTasksComponent implements OnInit {
   itemsBreadCrumb!: MenuItem[];
   home!: MenuItem;
 
-  users: any = [
-    { name: "Mohamed", id: '651b9ee7db0a1cd83fafbccd' },
-    { name: "Omar", id: '651b9f0edb0a1cd83fafbcd0' },
-  ]
+  users: any = []
 
   status: any = [
     { name: "Complete", id: 1 },
@@ -48,15 +46,24 @@ export class ListTasksComponent implements OnInit {
     private tasksService: TasksService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
+    private userService: UsersService
 
   ) { }
 
   ngOnInit(): void {
     this.getAllTasks()
     this.createform()
+    this.getAllUsers()
     this.itemsBreadCrumb = [{ label: 'About Featured' }, { label: 'Tasks-list' }];
     this.itemsBreadCrumb[0] = { label: 'About Featured', routerLink: '/admin/main' };
     this.home = { icon: 'pi pi-home', routerLink: '/admin/main' };
+  }
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe((res: any) => {
+      console.log(res)
+      this.users = res.users
+      console.log(this.users)
+    })
   }
   // CONFIRM MSG
 

@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { TasksService } from '../../services/tasks.service';
 import * as moment from 'moment';
 import { ConfirmationService } from 'primeng/api';
+import { UsersService } from '../../../manage-users/services/users.service';
 
 @Component({
   selector: 'app-add-task',
@@ -20,14 +21,12 @@ export class AddTaskComponent implements OnInit {
     public matDialog: MatDialog,
     private tasksService: TasksService,
     private confirmationService: ConfirmationService,
+    private userService: UsersService
   ) { }
 
-  users: any = [
-    { name: "Mohamed", id: '651b9ee7db0a1cd83fafbccd' },
-    { name: "Omar", id: '651b9f0edb0a1cd83fafbcd0' },
-  ]
+  users: any = []
   ngOnInit(): void {
-    console.log(this.data)
+    this.getAllUsers()
     this.createForm()
   }
   createForm() {
@@ -55,6 +54,13 @@ export class AddTaskComponent implements OnInit {
     let model = this.prepeareFormData()
     this.tasksService.updateTask(this.data._id, model).subscribe(res => {
       this.dialog.close(true)
+    })
+  }
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe((res: any) => {
+      console.log(res)
+      this.users = res.users
+      console.log(this.users)
     })
   }
   close() {

@@ -34,9 +34,8 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loginService.register(this.formRegister.value).subscribe((res: any) => {
       localStorage.setItem('token', res.token)
-      // this.router.navigate(['user/main'])
-      console.log(res)
-      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Success' });
+      this.router.navigate(['user/main/home'])
+      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Account created Successfuly' });
     })
   }
 

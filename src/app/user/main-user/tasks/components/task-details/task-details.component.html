@@ -1,12 +1,32 @@
 <div class="container">
-    <div class="imageBox">
-        <img alt="" class="w-100">
+    <div style="color: #3d4371;" class="h3 fw-bold">Task details : ...</div>
+
+    <div class="imageBox row d-felx">
+        <!-- <img [src]="" alt="" class="w-100"> -->
+        <div class="col-md-3">
+            <img style="max-width: 100%;" [src]="'https://i-task-crud.onrender.com/'+item?.image" alt="image">
+
+        </div>
+        <div class="col-md-9 my-5">
+            <span class="fs-4 fw-bold lh-sm" style="color: #3d4371;">
+                Hello dear Omar, I am happy that you are here today. I would like to inform you that this task has been
+                added by the admin to you. When you finish it, you must press Complete to finish it and the admin will
+                receives
+                a
+                notification that the task is completed. Thank you.
+            </span>
+        </div>
     </div>
     <div class="d-flex justify-content-between align-items-baseline my-3">
-        <h1 class="card-title ">title</h1>
-        <button  mat-raised-button color="warn">Complete</button>
+        <h2 class="card-title fw-bold"><span class="h1 fw-bold" style="color: #3d4371;">Title : </span>{{item?.title}}
+        </h2>
+        <button mat-raised-button style="background-color: #3d4371;" class="rounded-2 text-white h5 mt-2 p-2"
+            (click)="complate(item)">Complete</button>
     </div>
-    <p class="card-subtitle mb-2 text-muted">Dead-Line Date : 31/12/2022</p>
+    <p class="card-subtitle mb-2 text-secondary fw-bold"><span class="h5 fw-bold" style="color: #3d4371;">Dead-Line Date
+            :
+        </span>{{item?.deadline}}</p>
     <hr>
-    <p class="card-text">description</p>
+    <p class="card-text mb-2 text-secondary fw-bold"><span class="h5 fw-bold" style="color: #3d4371;">Description :
+        </span>{{item?.description}}</p>
 </div>

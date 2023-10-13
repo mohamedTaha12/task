@@ -51,7 +51,6 @@ export class SideBarComponent implements OnInit {
     console.log('decrease sidenav width');
   }
   logout() {
-    console.log("tet")
     const message = `Are you sure you want to Logout ?`;
 
     const dialogData = new ConfirmDialogModel("Confirm Action", message);

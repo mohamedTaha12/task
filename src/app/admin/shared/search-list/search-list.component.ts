@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { TasksService } from '../../main/tasks-admin/services/tasks.service';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { UsersService } from '../../main/manage-users/services/users.service';
 
 @Component({
   selector: 'app-search-list',
@@ -11,10 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class SearchListComponent implements OnInit {
   searchForm!: FormGroup
-  users: any = [
-    { name: "Mohamed", id: '651b9ee7db0a1cd83fafbccd' },
-    { name: "Omar", id: '651b9f0edb0a1cd83fafbcd0' },
-  ]
+  users: any = []
   status: any = [
     { name: "Complete", id: 1 },
     { name: "In-Progress", id: 2 },
@@ -23,11 +21,13 @@ export class SearchListComponent implements OnInit {
   constructor(
     private dialog: MatDialogRef<SearchListComponent>,
     private tasksService: TasksService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UsersService
 
   ) { }
   ngOnInit(): void {
     this.createForm()
+    this.getAllUsers()
   }
   createForm() {
     this.searchForm = this.fb.group({
@@ -59,6 +59,13 @@ export class SearchListComponent implements OnInit {
     //   console.log(res)
     //   this.dialog.close(true)
     // })
+  }
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe((res: any) => {
+      console.log(res)
+      this.users = res.users
+      console.log(this.users)
+    })
   }
   // searchByTitle(ele: any) {
   //   this.filterations['keyword'] = ele.value

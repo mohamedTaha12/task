@@ -5,8 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ManageUsersRoutingModule } from './manage-users-routing.module';
 import { MaterialModule } from 'src/app/user/material/material.module';
-
-
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { TableModule } from 'primeng/table';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,14 @@ import { MaterialModule } from 'src/app/user/material/material.module';
     ReactiveFormsModule,
     ManageUsersRoutingModule,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatMenuModule,
+    MatButtonModule,
+    ConfirmPopupModule,
+    TableModule,
+    MenuModule
   ]
 })
 export class ManageUsersModule { }

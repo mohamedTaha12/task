@@ -20,4 +20,7 @@ export class TasksService {
   completeTask(model: Object) {
     return this.http.put(environment.baseUrl + "tasks/complete", model)
   }
+  getDetails(id: string) {
+    return this.http.get(environment.baseUrl + "tasks/task/" + id)
+  }
 }
