@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
-import { ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { MediaMatcher } from '@angular/cdk/layout';
-import { ConfirmDialogModel, ConfirmMsgComponent } from '../confirm-msg/confirm-msg.component';
-import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogModel, ConfirmMsgComponent } from 'src/app/admin/shared/confirm-msg/confirm-msg.component';
+
 @Component({
-  selector: 'app-side-bar',
-  templateUrl: './side-bar.component.html',
-  styleUrls: ['./side-bar.component.scss']
+  selector: 'app-side-bar-user',
+  templateUrl: './side-bar-user.component.html',
+  styleUrls: ['./side-bar-user.component.scss']
 })
-export class SideBarComponent implements OnInit {
+export class SideBarUserComponent implements OnInit {
   public sidebarShow: boolean = false;
   sidenavWidth = 4;
   ngStyle!: string;
-  items!: MenuItem[];
-  home!: MenuItem;
   collapsedNav!: boolean;
   mobileQuery: MediaQueryList;
 
@@ -29,17 +27,17 @@ export class SideBarComponent implements OnInit {
     private changeDetectorRef: ChangeDetectorRef,
     private media: MediaMatcher,
     public dialog: MatDialog,
+    private route: ActivatedRoute
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    console.log(this.router.url)
   }
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
   ngOnInit() {
-    // this.items = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
-    // this.home = { icon: 'pi pi-home', routerLink: '/' };
   }
 
   increase() {
@@ -51,7 +49,6 @@ export class SideBarComponent implements OnInit {
     console.log('decrease sidenav width');
   }
   logout() {
-    console.log("tet")
     const message = `Are you sure you want to Logout ?`;
 
     const dialogData = new ConfirmDialogModel("Confirm Action", message);
@@ -64,7 +61,7 @@ export class SideBarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(dialogResult => {
       if (dialogResult) {
         localStorage.removeItem('token')
-        this.router.navigate(['admin/login'])
+        this.router.navigate(['user/login'])
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Logout successfuly' });
       }
     });

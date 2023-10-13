@@ -5,12 +5,12 @@ import { TaskDetailsComponent } from './components/task-details/task-details.com
 
 const routes: Routes = [
   {
-    path:'',
-    component:ListTasksComponent
+    path: 'list',
+    component: ListTasksComponent
   },
   {
-    path:':id', 
-    component:TaskDetailsComponent
+    path: 'details/:id',
+    component: TaskDetailsComponent
   },
 ];
 

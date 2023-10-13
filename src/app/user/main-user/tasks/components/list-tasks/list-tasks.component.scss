@@ -1,6 +1,7 @@
 button {
     color: #FFF;
     margin: 0 5px;
+
     &.addTask {
         background-color: #ca085a;
         color: #FFF;
@@ -12,7 +13,8 @@ button {
 :host ::ng-deep {
     table {
         thead {
-            background-color: #bc1059!important;
+            background-color: #bc1059 !important;
+
             .mat-header-cell {
                 color: #FFF;
             }
@@ -21,9 +23,13 @@ button {
 }
 
 .w-20 {
-    width: 20%!important;
+    width: 20% !important;
 }
 
 h2 {
     color: #bc1059;
+}
+
+.example-card {
+    max-width: 400px;
 }

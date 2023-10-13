@@ -20,6 +20,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { MainModule } from './admin/main/main.module';
 import { SharedModule } from './admin/shared/shared.module';
+import { MainUserModule } from './user/main-user/main-user.module';
+import { SharedUserModule } from './user/shared-user/shared-user.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +42,8 @@ import { SharedModule } from './admin/shared/shared.module';
     CardModule,
     MainModule,
     SharedModule,
+    SharedUserModule,
+    MainUserModule,
     ConfirmDialogModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',

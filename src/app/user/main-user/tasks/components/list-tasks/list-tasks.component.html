@@ -1,8 +1,24 @@
 <div class="mt-4">
+  <mat-card class="m-3">
+    <mat-card-content style="color: #3d4371;" class="h3 fw-bold">Welcone Omar in Feadtured-App</mat-card-content>
+  </mat-card>
+  <div class="row justify-content-center" *ngIf="noData">
+    <mat-card>
+      <mat-card-content class="text-danger h3 fw-bold">Notes : ...</mat-card-content>
+      <mat-card-content class="text-danger h2 fw-bold">There is no Tasks asigned for you
+        ..</mat-card-content>
+      <mat-card-content class=" h6 text-secondary">please call adminstrator to recieve
+        tasks .</mat-card-content>
+    </mat-card>
 
 
-  <div class="row">
-    <div class="col-md-3" *ngFor="let item of dataSource;let index = index">
+  </div>
+
+
+  <div class="row justify-content-between">
+
+
+    <!-- <div class="col-md-3" *ngFor="let item of dataSource;let index = index">
       <div class="card mt-3" >
         <div class="card-body">
           <h2 class="card-title">{{item.title}}</h2>
@@ -12,10 +28,34 @@
           <button  mat-raised-button color="warn">Complete</button>
         </div>
       </div>
-    </div>
+    </div> -->
+
+    <mat-card style="min-height: 48%;" class="example-card col-xl-3 col-lg-4 col-md-6 m-2"
+      *ngFor="let item of dataSource;let index = index">
+      <mat-card-header>
+        <mat-card-title><span class="fw-bold" style="color: #3d4371;">Task title :
+          </span>{{item.title}}</mat-card-title>
+        <mat-card-subtitle><span style="color: #3d4371;">Dead-Line Date </span>:
+          {{item.deadline}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><span class="fw-bold" style="color: #3d4371;">Task details :
+          </span>{{item.description }}</p>
+        <p></p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button style="background-color: #3d4371;" class="text-white rounded-1">DETAILS</button>
+        <button mat-button style="background-color: #3d4371;" class="text-white rounded-1"
+          (click)="complate(item)">COMPELATE</button>
+      </mat-card-actions>
+    </mat-card>
+
+
+
+
   </div>
 
-    <!-- <div class="listBox">
+  <!-- <div class="listBox">
         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8  w-100 mt-2">
 
             <ng-container matColumnDef="position">

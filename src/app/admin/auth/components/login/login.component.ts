@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
 
     })
   }
+  toUser() {
+    this.router.navigate(['/user/login'])
+  }
 
 
 }

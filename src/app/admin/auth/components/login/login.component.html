@@ -6,20 +6,18 @@
                     class="img-fluid" alt="Phone image">
             </div>
             <div class="card p-5 rounded-5 col-md-6">
-                <h1 class="text-center fs-1 fw-bold">{{"aboutApp.featured" | translate}}</h1>
+                <h1 class="text-center fs-1 fw-bold" style="color: #3d4371;">Feadtured-App</h1>
                 <h3 class="text-secondary text-center fs-5 fw-bold">admin</h3>
                 <form [formGroup]="formLogin">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input formControlName="email" type="email" id="form1Example13"
-                            class="form-control form-control-lg" />
+                        <input formControlName="email" type="email" class="form-control form-control-lg" />
                         <label class="form-label" for="form1Example13">Email address</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input formControlName="password" type="password" id="form1Example23"
-                            class="form-control form-control-lg" />
+                        <input formControlName="password" type="password" class="form-control form-control-lg" />
                         <label class="form-label" for="form1Example23">Password</label>
                     </div>
 
@@ -28,11 +26,11 @@
                     <!-- Submit button -->
                     <div class="text-center ">
                         <button type="submit" (click)="login()" [disabled]="formLogin.invalid"
-                            class="btn btn-primary px-4 btn-lg btn-block ">Log
+                            class="btn px-4 btn-lg btn-block text-white" style="background-color: #3d4371;">Log
                             in</button>
                         <div class="mt-1">
-                            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
-                                role="button">
+                            <a class="btn text-white btn-lg btn-block" style="background-color: #3d4371;"
+                                routerLink="/user/login" role="button">
                                 <i class="fab fa-twitter me-2"></i>Continue as a User</a>
                         </div>
                     </div>
@@ -48,20 +46,18 @@
     <div class="container py-5 h-100">
         <div class="row d-flex align-items-center justify-content-center h-100">
             <div class="card p-5 rounded-5 col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                <h1 class="text-center fs-1 fw-bold">{{"aboutApp.featured" | translate}}</h1>
+                <h1 class="text-center fs-1 fw-bold" style="color: #3d4371;">Feadtured-App</h1>
                 <h3 class="text-secondary text-center fs-5 fw-bold">admin</h3>
                 <form [formGroup]="formLogin">
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                        <input formControlName="email" type="email" id="form1Example13"
-                            class="form-control form-control-lg" />
+                        <input formControlName="email" type="email" class="form-control form-control-lg" />
                         <label class="form-label" for="form1Example13">Email address</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-4">
-                        <input formControlName="password" type="password" id="form1Example23"
-                            class="form-control form-control-lg" />
+                        <input formControlName="password" type="password" class="form-control form-control-lg" />
                         <label class="form-label" for="form1Example23">Password</label>
                     </div>
 
@@ -70,11 +66,11 @@
                     <!-- Submit button -->
                     <div class="text-center ">
                         <button type="submit" (click)="login()" [disabled]="formLogin.invalid"
-                            class="btn btn-primary px-4 btn-lg btn-block ">Log
+                            class="btn text-white px-4 btn-lg" style="background-color: #3d4371;">Log
                             in</button>
                         <div class="mt-1">
-                            <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!"
-                                role="button">
+                            <a routerLink="/user/login" style="background-color: #3d4371;"
+                                class="btn text-white btn-lg btn-block" role="button">
                                 <i class="fab fa-twitter me-2"></i>Continue as a User</a>
                         </div>
                     </div>
