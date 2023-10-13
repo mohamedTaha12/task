@@ -5,6 +5,7 @@ import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { UsersService } from '../../services/users.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmDialogModel, ConfirmMsgComponent } from 'src/app/admin/shared/confirm-msg/confirm-msg.component';
+import { ChangeStatusVM } from 'src/app/admin/core/models/change-status-vm';
 export interface PeriodicElement {
   name: string;
   email: string;
@@ -78,6 +79,20 @@ export class UsersComponent implements OnInit {
     })
   }
 
+  changeStatus(ele: any) {
+    if (ele.assignedTasks == 0) {
+      const model: ChangeStatusVM = {
+        id: ele._id,
+        status: ele.status
+      }
+      this.usersService.changeStatus(model).subscribe(res => {
+        this.getAllUsers()
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Staus changed successfuly' });
+      })
+    } else {
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: "This user Already have " + ele.assignedTasks + " Tasks And You Can Not Make him In-Active" });
+    }
+  }
   // addTask() {
   //   const dialogRef = this.dialog.open(AddTaskComponent, {
   //     width: '750px',

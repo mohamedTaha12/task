@@ -127,7 +127,7 @@
       <!-- status Column -->
       <ng-container matColumnDef="status">
         <th style="color: #fff;" mat-header-cell *matHeaderCellDef> status </th>
-        <td mat-cell class="fw-bold" *matCellDef="let element"> {{element.status}} </td>
+        <td mat-cell class="fw-bold" *matCellDef="let element">{{element.status}}</td>
       </ng-container>
 
       <ng-container matColumnDef="actions">
@@ -136,8 +136,9 @@
 
           <button mat-button [matMenuTriggerFor]="menu" class="fw-bold"><mat-icon>more_vert</mat-icon></button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item><mat-icon>border_color</mat-icon><span
-                class="fw-bold text-muted">Update</span></button>
+            <button mat-menu-item (click)="changeStatus(element)"><mat-icon>autorenew</mat-icon><span
+                class="fw-bold text-muted">Change
+                status</span></button>
             <button mat-menu-item (click)="deleteUser(element)"><mat-icon>delete</mat-icon><span
                 class="fw-bold text-muted">Delete</span></button>
           </mat-menu>
@@ -178,13 +179,18 @@
                 <td>{{ product?.username }}</td>
                 <td>{{ product?.email }}</td>
                 <td>{{ product?.assignedTasks }}</td>
-                <td>{{ product?.status }}</td>
+                <td>
+                  <!-- <div class="flex justify-content-center">
+                    <p-inputSwitch (click)="changeStatus(product)"></p-inputSwitch>
+                  </div> -->
+                  {{ product?.status }}
+                </td>
                 <td>
 
                   <button mat-button [matMenuTriggerFor]="menu" class="fw-bold"><mat-icon>more_vert</mat-icon></button>
                   <mat-menu #menu="matMenu">
-                    <button mat-menu-item><mat-icon>border_color</mat-icon><span
-                        class="fw-bold text-muted">Update</span></button>
+                    <button mat-menu-item (click)="changeStatus(product)"><mat-icon>autorenew</mat-icon><span
+                        class="fw-bold text-muted">Change status</span></button>
                     <button mat-menu-item><mat-icon>delete</mat-icon><span class="fw-bold text-muted"
                         (click)="deleteUser(product)">Delete</span></button>
                   </mat-menu>

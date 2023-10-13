@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
 import { TableModule } from 'primeng/table';
 import { MenuModule } from 'primeng/menu';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MenuModule } from 'primeng/menu';
     MatButtonModule,
     ConfirmPopupModule,
     TableModule,
-    MenuModule
+    MenuModule,
+    InputSwitchModule
   ]
 })
 export class ManageUsersModule { }
