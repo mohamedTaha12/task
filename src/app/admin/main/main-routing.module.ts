@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         component: MainComponent
       },
       {
@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'users',
         loadChildren: () => import('./manage-users/manage-users.module').then(m => m.ManageUsersModule)
+      },
+      {
+        path: 'general',
+        loadChildren: () => import('./general/general.module').then(m => m.GeneralModule)
       }
     ]
   }

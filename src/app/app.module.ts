@@ -22,6 +22,8 @@ import { MainModule } from './admin/main/main.module';
 import { SharedModule } from './admin/shared/shared.module';
 import { MainUserModule } from './user/main-user/main-user.module';
 import { SharedUserModule } from './user/shared-user/shared-user.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,7 +54,8 @@ import { SharedUserModule } from './user/shared-user/shared-user.module';
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MatFormFieldModule
   ], exports: [
     SharedModule
   ],

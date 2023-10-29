@@ -134,6 +134,11 @@ mat-card {
     margin: 10px;
 }
 
+.active {
+    background-color: #fafafa !important;
+    color: black !important;
+}
+
 @media (max-width: 600px) {
     mat-drawer-content {
         button {

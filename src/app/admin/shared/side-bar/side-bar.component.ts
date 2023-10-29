@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { ChangeDetectorRef, OnDestroy } from '@angular/core';
@@ -19,10 +19,10 @@ export class SideBarComponent implements OnInit {
   home!: MenuItem;
   collapsedNav!: boolean;
   mobileQuery: MediaQueryList;
-
   private _mobileQueryListener: () => void;
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private translateService: TranslateService,
@@ -38,8 +38,6 @@ export class SideBarComponent implements OnInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
   ngOnInit() {
-    // this.items = [{ label: 'Computer' }, { label: 'Notebook' }, { label: 'Accessories' }, { label: 'Backpacks' }, { label: 'Item' }];
-    // this.home = { icon: 'pi pi-home', routerLink: '/' };
   }
 
   increase() {
